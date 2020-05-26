@@ -20,16 +20,16 @@ import com.eid.eid.repository.ProductRepository;
 @RestController
 @RequestMapping("eid/products")
 public class ProductController {
-	@Autowired(required=true)
+	@Autowired(required = true)
 	private ProductRepository productRepositoty;
-	
+
 	@GetMapping
-	public List<Product> getAllProducts(){
+	public List<Product> getAllProducts() {
 		return this.productRepositoty.findAll();
 	}
-	
+
 	@GetMapping("/{id}")
-	public Product getUserById(@PathVariable (value = "id") long productId) {
+	public Product getUserById(@PathVariable(value = "id") long productId) {
 		return this.productRepositoty.findById(productId)
 				.orElseThrow(() -> new ResourceNotFoundException("Product not found with id :" + productId));
 	}
@@ -38,22 +38,22 @@ public class ProductController {
 	public Product createProduct(@RequestBody Product product) {
 		return this.productRepositoty.save(product);
 	}
-	
+
 	@PutMapping("/{id}")
-	public Product updateProduct(@RequestBody Product product, @PathVariable ("id") long productId) {
-		 Product existingProduct = this.productRepositoty.findById(productId)
-			.orElseThrow(() -> new ResourceNotFoundException("Product not found with id :" + productId));
-		 existingProduct.setProductName(product.getProductName());
-		 existingProduct.setProductAddress(product.getProductAddress());
-		 existingProduct.setProductDetails(product.getProductDetails());
-		 return this.productRepositoty.save(existingProduct);
+	public Product updateProduct(@RequestBody Product product, @PathVariable("id") long productId) {
+		Product existingProduct = this.productRepositoty.findById(productId)
+				.orElseThrow(() -> new ResourceNotFoundException("Product not found with id :" + productId));
+		existingProduct.setProductName(product.getProductName());
+		existingProduct.setProductAddress(product.getProductAddress());
+		existingProduct.setProductDetails(product.getProductDetails());
+		return this.productRepositoty.save(existingProduct);
 	}
-	
+
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Product> deleteProduct(@PathVariable ("id") long productId){
-		 Product existingProduct = this.productRepositoty.findById(productId)
-					.orElseThrow(() -> new ResourceNotFoundException("Product not found with id :" + productId));
-		 this.productRepositoty.delete(existingProduct);
-		 return ResponseEntity.ok().build();
+	public ResponseEntity<Product> deleteProduct(@PathVariable("id") long productId) {
+		Product existingProduct = this.productRepositoty.findById(productId)
+				.orElseThrow(() -> new ResourceNotFoundException("Product not found with id :" + productId));
+		this.productRepositoty.delete(existingProduct);
+		return ResponseEntity.ok().build();
 	}
 }
