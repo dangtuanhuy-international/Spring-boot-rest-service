@@ -1,4 +1,4 @@
-package com.eid.eid;
+package com.eid;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

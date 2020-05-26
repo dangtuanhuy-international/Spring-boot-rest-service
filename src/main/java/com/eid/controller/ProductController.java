@@ -1,8 +1,9 @@
-package com.eid.eid.controller;
+package com.eid.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.eid.eid.entity.Product;
-import com.eid.eid.exception.ResourceNotFoundException;
-import com.eid.eid.repository.ProductRepository;
+import com.eid.entity.Product;
+import com.eid.exception.ResourceNotFoundException;
+import com.eid.repository.ProductRepository;
 
 @RestController
+@Configuration
 @RequestMapping("eid/products")
 public class ProductController {
 	@Autowired(required = true)

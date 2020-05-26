@@ -1,4 +1,4 @@
-package com.eid.eid.entity;
+package com.eid.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

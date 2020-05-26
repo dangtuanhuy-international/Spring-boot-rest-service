@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.eid.eid.exception;
+package com.eid.exception;
 
 import java.util.Date;
 
