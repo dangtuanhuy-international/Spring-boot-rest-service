@@ -1,4 +1,4 @@
-package com.eid.eid.entity;
+package com.eid.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +13,7 @@ import javax.persistence.Table;
 public class Product {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
+@Column(name = "id")
 private long id;
 
 @Column(name = "name")
@@ -23,7 +24,9 @@ private String productDetails;
 
 @Column(name = "address")
 private String productAddress;
-
+public Product(){
+	
+}
 public Product(String productName, String productDetails, String productAddress) {
 	super();
 	this.productName = productName;
