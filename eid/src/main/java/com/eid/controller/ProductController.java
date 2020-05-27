@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.eid.entity.Product;
 import com.eid.exception.ResourceNotFoundException;
+import com.eid.handleconst.HandleConstError;
 import com.eid.repository.ProductRepository;
 
 @RestController
@@ -31,7 +32,7 @@ public class ProductController {
 	@GetMapping("/{id}")
 	public Product getUserById(@PathVariable(value = "id") long productId) {
 		return this.productRepositoty.findById(productId)
-				.orElseThrow(() -> new ResourceNotFoundException("Product not found with id :" + productId));
+				.orElseThrow(() -> new ResourceNotFoundException(HandleConstError.PRODUCT_NOT_FOUND + productId));
 	}
 
 	@PostMapping
@@ -42,7 +43,7 @@ public class ProductController {
 	@PutMapping("/{id}")
 	public Product updateProduct(@RequestBody Product product, @PathVariable("id") long productId) {
 		Product existingProduct = this.productRepositoty.findById(productId)
-				.orElseThrow(() -> new ResourceNotFoundException("Product not found with id :" + productId));
+				.orElseThrow(() -> new ResourceNotFoundException(HandleConstError.PRODUCT_NOT_FOUND + productId));
 		existingProduct.setProductName(product.getProductName());
 		existingProduct.setProductAddress(product.getProductAddress());
 		existingProduct.setProductDetails(product.getProductDetails());
@@ -52,7 +53,7 @@ public class ProductController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Product> deleteProduct(@PathVariable("id") long productId) {
 		Product existingProduct = this.productRepositoty.findById(productId)
-				.orElseThrow(() -> new ResourceNotFoundException("Product not found with id :" + productId));
+				.orElseThrow(() -> new ResourceNotFoundException(HandleConstError.PRODUCT_NOT_FOUND + productId));
 		this.productRepositoty.delete(existingProduct);
 		return ResponseEntity.ok().build();
 	}
