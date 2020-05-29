@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.eid.eid.repository;
+package com.eid.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.eid.eid.entity.Product;
+import com.eid.entity.Product;
 
 /**
  * @author HUY
